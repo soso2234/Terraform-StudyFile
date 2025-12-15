@@ -1,0 +1,5 @@
+region_name = "ap-southeast-2"
+vpc_cidr    = "172.17.0.0/16"
+sn_cidr     = "172.17.0.0/24"
+az_name     = "ap-southeast-2a"
+ami_id      = "ami-0b3c832b6b7289e44"
