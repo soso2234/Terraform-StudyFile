@@ -1,16 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "6.26.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "ap-northeast-2"
-}
-
 module "vpc" {
   source         = "./modules/vpc"
   region         = "ap-northeast-2"
@@ -36,8 +23,18 @@ module "route_table" {
 }
 
 module "sg" {
-  source = "./modules/security_group"
-  region = "ap-northeast-2"
-  vpc_id = module.vpc.vpc_id
+  source   = "./modules/security_group"
+  region   = "ap-northeast-2"
+  vpc_id   = module.vpc.vpc_id
   pjt_name = "tf"
+}
+
+module "instance" {
+  source        = "./modules/instance"
+  region        = "ap-northeast-2"
+  ami           = "ami-0b818a04bc9c2133c"
+  instance_type = "t3.micro"
+  sn_id         = module.subnet.sn_id
+  sg_ids        = [module.sg.sg_id]
+  pjt_name      = "tf"
 }

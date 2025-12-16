@@ -1,14 +1,14 @@
 variable "region" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "vpc_id" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "pjt_name" {
-  type = string
+  type    = string
   default = ""
 }
